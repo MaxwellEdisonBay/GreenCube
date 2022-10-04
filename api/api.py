@@ -41,7 +41,7 @@ if __name__ == '__main__':
     if len(sys.argv)!=1:
         if sys.argv[1] == "prod":
             from waitress import serve
-            serve(app, host="0.0.0.0", port=8080)
+            serve(app, host="127.0.0.1", port=6000)
         else:
             app.run(debug=True, port=6000, host="127.0.0.1")
     else:
