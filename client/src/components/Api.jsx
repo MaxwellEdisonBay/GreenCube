@@ -5,7 +5,7 @@ function Api() {
     <div className='flex flex-col px-6 lg:px-48 py-6 space-y-6'>
       <div className="flex flex-col bg-gray-200 p-6 rounded-xl tracking-tighter text-gray-700 text-base dark:text-gray-400 space-y-4" >
         <h1 className='text-lg'>
-          The following technologies were used to create this website:
+          The following technologies were used to create this website (<a href='https://github.com/MaxwellEdisonBay/GreenCube' className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600">check on Github</a>):
         </h1>
         <span>
           <b>
