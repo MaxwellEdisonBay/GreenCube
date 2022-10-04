@@ -2,29 +2,11 @@ from databaseRepo import DataBaseRepo
 from flask import Flask
 from flask import request
 import time
+import sys
 
 app = Flask(__name__)
 
 db = DataBaseRepo()
-
-mockResponse = {
-    'links':
-    [
-        {'id': '0',
-         'name': "Presentation 1",
-         'url': "http://localhost:3000/1"},
-        {'id': '1',
-         'name': "Presentation 2",
-         'url': "http://localhost:3000/2"},
-        {'id': '2',
-         'name': "Presentation 3",
-         'url': "http://localhost:3000/3"},
-        {'id': '3',
-         'name': "Presentation 4",
-         'url': "http://localhost:3000/4"},
-    ]
-}
-
 
 @app.route('/time')
 def get_current_time():
@@ -56,4 +38,11 @@ def addLink():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=6000, host="localhost")
+    if len(sys.argv)!=1:
+        if sys.argv[1] == "prod":
+            from waitress import serve
+            serve(app, host="0.0.0.0", port=8080)
+        else:
+            app.run(debug=True, port=6000, host="127.0.0.1")
+    else:
+            app.run(debug=True, port=6000, host="127.0.0.1")

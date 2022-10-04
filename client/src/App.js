@@ -15,7 +15,7 @@ function App() {
 
   useEffect(() => {
     const fetchPres = async () => {
-      const res = await axios.get("/links")
+      const res = await axios.get("https://ivan.beauty/links")
       setPres(res.data.links)
     }
     fetchPres()
