@@ -1,42 +1,38 @@
-import logo from './logo.svg';
 import { useState, useEffect } from 'react'
 import './App.css';
 import axios from 'axios'
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Presentation from './components/Presentation';
+import Api from './components/Api';
+import { ReactNotifications } from 'react-notifications-component'
+import Header from './components/Header';
+import Resume from './components/Resume';
 
 
 function App() {
 
-  const [links, setLinks] = useState([])
+  const [pres, setPres] = useState([])
 
   useEffect(() => {
-    const fetchLinks = async () => {
+    const fetchPres = async () => {
       const res = await axios.get("/links")
-      setLinks(res.data.links)
+      setPres(res.data.links)
     }
-    fetchLinks()
-    console.log(links)
+    fetchPres()
+
   }, [])
 
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <p>{links.toString()}</p>
-      </header>
-    </div>
+    <BrowserRouter>
+      <ReactNotifications/>
+      <Header/>
+      <Routes>
+        <Route path="/" element={<Presentation pres={pres} setPres={setPres}/>} />
+        <Route path="/api" element={<Api />} />
+        <Route path="/contact" element={<Resume />} />
+      </Routes>
+    </BrowserRouter>
+
   );
 }
 
