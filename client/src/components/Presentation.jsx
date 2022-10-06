@@ -24,6 +24,9 @@ function Presentation({ pres, setPres }) {
                     p.id !== id
                 )
                 setPres(newPres)
+                if (id === selectedPres.id){
+                    setSelectPres(null)
+                }
                 successNotif("Presentation has been deleted")
             } else {
                 errorNotif(`Could not delete a presentation. Error code ${res.status}`)
@@ -45,6 +48,9 @@ function Presentation({ pres, setPres }) {
                     }
                 })
                 setPres(newPres)
+                if (updatedData.id === selectedPres.id){
+                    setSelectPres(updatedData)
+                }
                 successNotif("Presentation has been edited")
             } else {
                 errorNotif(`Failed to edit a presentation. Error code ${res.status}`)
