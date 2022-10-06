@@ -52,7 +52,7 @@ def deleteLink():
 
 @app.route('/links/update', methods=['POST'])
 def updateLink():
-    pres = Presentation.query.get(id)
+    pres = Presentation.query.get(request.json["id"])
     pres.name = request.json["name"]
     pres.url = request.json["url"]
     db.session.add(pres)
